@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :public do
+    get 'homes/top'
+  end
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations" ,
     sessions: 'public/sessions'
@@ -15,6 +21,9 @@ Rails.application.routes.draw do
   resources :users, only:[:show, :edit, :index], module: 'public'
   get 'users/confirm' => "public/users#confilm", as: 'confilm'
   
+  # home
+  
+  root to: "public/homes#top"
   
   ## admin
   
