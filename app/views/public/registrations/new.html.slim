@@ -5,6 +5,14 @@ h2 Sign up
   = render "public/shared/error_messages", resource: resource
 
   .field
+  
+    = f.label :name, "ユーザーネーム"
+    
+    br
+    
+    = f.text_field :name
+
+  .field
 
     = f.label :email
 

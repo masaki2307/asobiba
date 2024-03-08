@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # user
    namespace :admin do
     resources :users, only:[:show, :index]
-    get '/users/:id/post_list' => "ausers#post_list", as: 'post_list'
+    get '/users/:id/post_list' => "users#post_list", as: 'post_list'
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
