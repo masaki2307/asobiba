@@ -5,6 +5,15 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     
   end
+  
+  def withdraw
+    @user = current_user
+    @user.update(is_active: false)
+    flash[:notice] = "退会を完了しました"
+    reset_session
+    redirect_to root_path
+    
+  end
 
   def edit
     
@@ -32,6 +41,9 @@ class Public::UsersController < ApplicationController
 
   def confirm
   end
+  
+
+  
   
   private
   

@@ -1,2 +1,12 @@
-h1 Public::Users#confirm
-p Find me in app/views/public/users/confirm.html.slim
+h3 本当に退会してもよろしいですか？
+p 退会すると今まで投稿した履歴が見れなくなります。
+br
+p ※投稿した内容は消えません
+br 
+p 退会する場合は,「退会する」をクリックしてください
+
+= link_to "退会しない", user_path(current_user)
+= link_to "退会する", withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" }
+
+
+
