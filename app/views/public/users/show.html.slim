@@ -1,17 +1,16 @@
 h2 = "#{@user.name}さんのマイページ" 
 
-= image_tag @user.profile_image(100,100)
+= image_tag @user.get_profile_image(100,100)
 
 p ユーザーネーム
-
 = @user.name
 
 
 /ジャンル追加予定
 
 p 一言
-
 = @user.introduction
 
 /いいね数追加予定
 
+= link_to "マイページを編集", edit_user_path(@user)
