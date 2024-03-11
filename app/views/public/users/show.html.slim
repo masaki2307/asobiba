@@ -1,3 +1,4 @@
+= render 'public/users/header', users: @users
 h2 = "#{@user.name}さんのマイページ" 
 
 = image_tag @user.get_profile_image(100,100)
