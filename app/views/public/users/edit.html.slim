@@ -4,22 +4,22 @@ h3 ユーザー内容編集
 - if @user.errors.any?
    h2 = "#{@user.errors.count} 個のエラーが発生してます"
    ul
-     - @user.errors.full_messages.each do |message| 
+     - @user.errors.full_messages.each do |message|
         li = message
 
 = form_with model: @user do |f|
 
   .field
     = f.label :name, "ユーザーネーム "
-    = f.text_field :name 
-       
+    = f.text_field :name
+
   .field
     = f.file_field :profile_image, accept: "image/*"
-  
+
   .field
     = f.label :introduction, "自己紹介(一言)"
     = f.text_field :introduction
-   
+
   = f.submit "変更を保存"
-  
+
   = link_to "退会する", confirm_path(current_user)

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations" ,
     sessions: 'public/sessions'
@@ -19,7 +20,8 @@ Rails.application.routes.draw do
   patch 'user/withdraw' => "public/users#withdraw", as: 'withdraw'
   get 'users/confirm' => "public/users#confirm", as: 'confirm'
   resources :users, only:[:show, :edit, :update, :destroy], module: 'public'
-  
+  # post
+  resources :posts, only:[:show, :edit, :index, :new, :create, :update, :destroy], module: 'public'
 
   # home
   
@@ -32,7 +34,10 @@ Rails.application.routes.draw do
     resources :users, only:[:show, :index]
     get '/users/:id/post_list' => "users#post_list", as: 'admin_post_list'
   end
-  
+  # post
+    namespace :admin do
+    resources :users, only:[:show, :index, :destroy]
+    end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
