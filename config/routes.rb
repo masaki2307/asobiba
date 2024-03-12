@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   
 
+
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations" ,
     sessions: 'public/sessions'
@@ -38,6 +39,14 @@ Rails.application.routes.draw do
     namespace :admin do
     resources :users, only:[:show, :index, :destroy]
     end
+  # genre
+    namespace :admin do
+      
+    resources :genres, only:[:edit, :index, :create, :update]
+    
+    end
+  # top
+  get '/admin' => "admin/homes#top", as: 'admin'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
