@@ -1,2 +1,28 @@
-h1 Public::Posts#edit
-p Find me in app/views/public/posts/edit.html.slim
+= render 'public/users/header', users: @users
+h3 投稿編集
+
+- if @post.errors.any?
+   h2 = "#{@post.errors.count} 個のエラーが発生してます"
+   ul
+     - @post.errors.full_messages.each do |message|
+        li = message
+
+= form_with model: @post do |f|
+
+  .field
+    = f.label :title, "タイトル"
+    = f.text_field :title, placeholder: "ゲームタイトルを入れてください"
+
+  .field
+
+    = f.label :genre_name, "ジャンル名"
+    = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
+
+  .field
+    = f.file_field :image, accept: "image/*"
+
+  .field
+    = f.label :introduction, "感想orレビュー"
+    = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください"
+
+    = f.submit "変更を保存"

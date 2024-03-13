@@ -40,13 +40,11 @@ class Public::UsersController < ApplicationController
   end  
 
   def post_list
-  end
-
-  def confirm
+    @user = User.find(params[:id])
+    @posts = @user.posts.page(params[:page])
   end
   
 
-  
   
   private
   
