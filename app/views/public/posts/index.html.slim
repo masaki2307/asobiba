@@ -2,12 +2,12 @@
 h3 みんなの投稿
 
 - @posts.each do |post|
-  = link_to post_path(post) do 
+  = link_to post_path(post) do
     = image_tag post.get_image(100,100)
   h5 = post.title
   - if post.introduction.length >= 5
     p = post.introduction[0..4] += "..."
-    
-  p = post.user.name  
-  
-= paginate @posts  
+
+  p = post.user.name
+
+= paginate @posts

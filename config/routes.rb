@@ -32,12 +32,12 @@ Rails.application.routes.draw do
   
   # user
    namespace :admin do
-    resources :users, only:[:show, :index]
-    get '/users/:id/post_list' => "users#post_list", as: 'admin_post_list'
+    resources :users, only:[:show, :update]
+    get '/users/:id/post_list' => "users#post_list", as: 'post_list'
   end
   # post
     namespace :admin do
-    resources :users, only:[:show, :index, :destroy]
+    resources :posts, only:[:show, :index, :destroy]
     end
   # genre
     namespace :admin do

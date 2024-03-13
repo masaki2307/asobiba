@@ -2,8 +2,8 @@ class Post < ApplicationRecord
 
    has_one_attached :image
 
-   belongs_to :user, dependent: :destroy
-   belongs_to :genre, dependent: :destroy
+   belongs_to :user
+   belongs_to :genre
 
    validates :title, presence: true
    validates :introduction, presence: true
