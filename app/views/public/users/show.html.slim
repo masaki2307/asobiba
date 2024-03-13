@@ -1,6 +1,6 @@
 = render 'public/users/header', users: @users
 
-h2 = "#{@user.name}さんのマイページ" 
+h2 = "#{@user.name}さんのマイページ"
 
 = image_tag @user.get_profile_image(100,100)
 
@@ -18,4 +18,9 @@ p 一言
 - unless @user.guest_user?
     = link_to "マイページを編集", edit_user_path(@user)
 
+br
 = link_to "ログアウト", destroy_user_session_path, method: :delete
+br
+= link_to "新規投稿", new_post_path
+br
+= link_to "投稿履歴一覧はこちら", post_list_path
