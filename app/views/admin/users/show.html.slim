@@ -1,2 +1,23 @@
-h1 Admin::Users#show
-p Find me in app/views/admin/users/show.html.slim
+= render 'admin/homes/header', admins: @admins
+h3 "#{@user.name}さんのマイページ"
+
+= image_tag @user.get_profile_image(100,100)
+
+p ユーザーネームa
+= @user.name
+
+
+/ジャンル追加予定
+
+p 一言
+= @user.introduction
+
+= form_with model: @user, url: admin_user_path do |f|
+  = f.radio_button :is_active , true
+  = f.label :is_active_true, "入会"
+  = f.radio_button :is_active , false
+  = f.label :is_active_false, "退会"
+  
+  = f.submit "更新"
+
+= link_to "投稿履歴一覧はこちら", admin_post_list_path(@user)

@@ -1,2 +1,9 @@
-h1 Admin::Posts#show
-p Find me in app/views/admin/posts/show.html.slim
+= render 'admin/homes/header', admins: @admins
+
+h3 ゲームタイトル
+
+= image_tag @post.get_image(100,100)
+h5 = @post.genre.name
+p = @post.introduction
+p = @post.created_at.strftime("%Y/%m/%d")
+= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？"
