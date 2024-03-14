@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
    before_action :user_state, only: [:create]
-
+    
     private
 
     def user_state
