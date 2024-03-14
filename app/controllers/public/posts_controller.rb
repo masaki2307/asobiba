@@ -1,15 +1,26 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.page(params[:page])
+    if params[:search].present?
+      @posts = Post.joins(:user).where("title LIKE (?) OR users.name LIKE (?)", "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]) 
+    elsif params[:genre_name].present?
+      @genre = Genre.find_by(name: params[:genre_name])
+      @posts = @genre.posts.page(params[:page])
+    else
+      @posts = Post.page(params[:page])
+    end
+      #  
+    genre_seach
   end
 
   def show
     @post = Post.find(params[:id])
+    genre_seach
   end
 
   def new
     @post = Post.new
     @genres = Genre.all
+    genre_seach
   end
 
   def create
@@ -25,6 +36,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    genre_seach
   end
 
   def update

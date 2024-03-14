@@ -3,11 +3,25 @@
 - if user_signed_in?
   
   li = link_to "投稿一覧", posts_path
+  li.modal-open ジャンル検索 
   li = link_to "マイページ", user_path(current_user)
   li = link_to "ログアウト", destroy_user_session_path, method: :delete
-
+  
+  .modal-overlay
+    .modal-content
+      h3 ジャンルタグ一覧
+      - @genres.each do |genre|
+        = link_to genre.name , posts_path(genre_name: genre.name)
+        br
+      .modal-close 閉じる
+    
 - else
   
   li = link_to "投稿一覧", posts_path
   li = link_to "新規登録", new_user_registration_path
   li = link_to "ログイン", new_user_session_path
+  
+= form_with url: posts_path, method: :get do |f| 
+  = f.text_field :search,placeholder: "ゲームタイトルorユーザーネーム"
+  = f.submit "検索"
+  

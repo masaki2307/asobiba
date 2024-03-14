@@ -26,5 +26,5 @@ h3 投稿編集
     = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください"
 
     = f.submit "変更を保存"
-    
+
     = link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？"
