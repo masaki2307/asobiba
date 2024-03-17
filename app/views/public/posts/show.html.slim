@@ -1,28 +1,14 @@
 = render 'public/users/header', users: @users
 
-h3 ゲームタイトル
+h3 = @post.title
 = "評価： #{@post.review}点"
-div id="star_#{@post.id}"
-   
- 
-javascript:
-  $(document).on('turbolinks:load', function() {
-    let elem = document.querySelector('#star_#{@post.id}');
-    if (elem == null) return;
-      elem.innerHTML = ""
-    let opt = {
-      starOn: "#{asset_path('star-on.png')}",
-      starOff: "#{asset_path('star-off.png')}",
-      starHalf: "#{asset_path('star-half.png')}",
-      score: '#{@post.review}',
-      half: true ,
-      readOnly: true,
-    };
-        raty(elem, opt);
-      }); 
+= render 'public/posts/review', users: @users
 = image_tag @post.get_image(100,100)
 h5 = @post.genre.name
 p = @post.introduction
 p = @post.created_at.strftime("%Y/%m/%d")
 - if @post.user.id == current_user.id
   = link_to "変更",  edit_post_path(@post, user_id: @post.user)
+  
+  
+  

@@ -17,6 +17,22 @@ h3 新規投稿
       = f.label :review,"評価"
       = f.hidden_field :review, id: :review_star, class: 'form-control'
       #post_raty
+
+  .field
+
+    = f.label :genre_name, "ジャンル名"
+    = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
+
+  .field
+    = f.file_field :image, accept: "image/*"
+
+  .field
+    = f.label :introduction, "感想orレビュー"
+    = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください"
+
+    = f.submit "新規投稿"
+    
+    
     javascript:
       $(document).on('turbolinks:load', function() {
         let elem = document.querySelector('#post_raty');
@@ -32,17 +48,3 @@ h3 新規投稿
         };
         raty(elem, opt);
       });
-    
-  .field
-
-    = f.label :genre_name, "ジャンル名"
-    = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
-
-  .field
-    = f.file_field :image, accept: "image/*"
-
-  .field
-    = f.label :introduction, "感想orレビュー"
-    = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください"
-
-    = f.submit "新規投稿"

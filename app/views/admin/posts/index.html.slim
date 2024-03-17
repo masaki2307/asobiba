@@ -6,9 +6,26 @@ h3 投稿一覧
   = link_to admin_post_path(post) do
     = image_tag post.get_image(100,100)
   h5 = post.title
+  = "評価： #{post.review}点"
+  div id="star_#{post.id}"
   - if post.introduction.length >= 5
     p = post.introduction[0..4] += "..."
 
   p = post.user.name
-
+  javascript:
+    $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#star_#{post.id}');
+      if (elem == null) return;
+        elem.innerHTML = ""
+      let opt = {
+        starOn: "#{asset_path('star-on.png')}",
+        starOff: "#{asset_path('star-off.png')}",
+        starHalf: "#{asset_path('star-half.png')}",
+        score: '#{post.review}',
+        half: true ,
+        readOnly: true,
+        
+      };
+          raty(elem, opt);
+        });   
 = paginate @posts
