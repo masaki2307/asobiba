@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
    validates :title, presence: true
    validates :introduction, presence: true
-   validates :genre_id, presence: true
+   validates :review, presence: true 
    
     def get_image(width, height)
 

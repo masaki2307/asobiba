@@ -11,7 +11,28 @@ h3 新規投稿
   .field
     = f.label :title, "タイトル"
     = f.text_field :title, placeholder: "ゲームタイトルを入れてください"
-
+    
+  .field
+    .form-group#star
+      = f.label :review,"評価"
+      = f.hidden_field :review, id: :review_star, class: 'form-control'
+      #post_raty
+    javascript:
+      $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#post_raty');
+        if (elem == null) return;
+        elem.innerHTML = ""
+        let opt = {
+          starOn: "#{asset_path('star-on.png')}",
+          starOff: "#{asset_path('star-off.png')}",
+          starHalf: "#{asset_path('star-half.png')}",
+          scoreName: 'post[review]',
+          half: true ,  
+          
+        };
+        raty(elem, opt);
+      });
+    
   .field
 
     = f.label :genre_name, "ジャンル名"

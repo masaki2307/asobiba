@@ -8,19 +8,18 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.page(params[:page])
     end
-      #  
-    genre_seach
+  
   end
 
   def show
     @post = Post.find(params[:id])
-    genre_seach
+    
   end
 
   def new
     @post = Post.new
     @genres = Genre.all
-    genre_seach
+    
   end
 
   def create
@@ -35,10 +34,16 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-    genre_seach
+    if Post.exists?(id: params[:id])
+       @post = Post.find(params[:id])
+    else 
+      #@post = Post.find(params[:id])
+      #@user = @post.user
+      @user = User.find(params[:user_id])
+      redirect_to post_list_path(@user)
+    end
   end
-
+# User.exists?(name: '田中')
   def update
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
@@ -53,14 +58,15 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to post_list_path
+    @user = User.find(params[:user_id])
+    redirect_to post_list_path(@user)
   end
 
   private
 
   def post_params
 
-    params.require(:post).permit(:introduction, :title, :image, :user_id, :genre_id)
+    params.require(:post).permit(:introduction, :title, :image, :user_id, :genre_id, :review)
 
   end
 

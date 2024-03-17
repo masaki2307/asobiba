@@ -27,4 +27,4 @@ h3 投稿編集
 
     = f.submit "変更を保存"
 
-    = link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？"
+    = link_to "削除", post_path(id: @post, user_id: @post.user.id) , method: :delete, "data-confirm" => "本当に消しますか？"
