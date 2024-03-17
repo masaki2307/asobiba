@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
+    before_action :genre_search
     
-  def genre_seach
+  def genre_search
     @genres = Genre.all
   end
+  
   protected
   
   def configure_permitted_parameters

@@ -22,6 +22,6 @@
   li = link_to "ログイン", new_user_session_path
   
 = form_with url: posts_path, method: :get do |f| 
-  = f.text_field :search,placeholder: "ゲームタイトルorユーザーネーム"
+  = f.text_field :search, placeholder: "ゲームタイトルorユーザーネーム", class: "search"
   = f.submit "検索"
   

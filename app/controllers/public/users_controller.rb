@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
   def show
     
     @user = User.find(params[:id])
-    genre_seach
+    
   end
   
   def withdraw
@@ -15,13 +15,14 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会を完了しました"
     reset_session
     redirect_to root_path
-    genre_seach
+    
   end
 
   def edit
     
+    
     @user = User.find(params[:id])
-    genre_seach
+    
   end
   
   def update
@@ -42,7 +43,7 @@ class Public::UsersController < ApplicationController
   def post_list
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
-    genre_seach
+    
   end
   
 
