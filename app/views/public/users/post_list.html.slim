@@ -7,8 +7,11 @@ h3 = "#{@user.name}さんの投稿履歴"
   h5 = post.title
   = "評価： #{post.review}点"
   div id="star_#{post.id}"
-  - if post.introduction.length >= 5
+
+  - if post.introduction.length >= 6
     p = post.introduction[0..4] += "..."
+  - else
+    p = post.introduction
     
   p = post.user.name  
   

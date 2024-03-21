@@ -10,5 +10,26 @@ p = @post.created_at.strftime("%Y/%m/%d")
 - if @post.user.id == current_user.id
   = link_to "変更",  edit_post_path(@post, user_id: @post.user)
   
+h4 この投稿にコメントが出来ます
+
+p
+  | コメントするには
+  = link_to "ログイン", new_user_session_path
+  | の必要があります
   
+- if @comment.errors.any?
+  
+   ul
+     - @comment.errors.full_messages.each do |message|
+        li = message
+        
+= form_with model: [@post, @comment], url: post_comments_path(@post) do |f|
+  = f.text_area :body, maxlength: 250
+  = f.submit "コメントする"
+
+- @comments.each do |comment|
+  = comment.user.name
+  = comment.created_at.strftime("%Y/%m/%d")
+  = comment.body
+  br
   
