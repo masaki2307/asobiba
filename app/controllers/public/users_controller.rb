@@ -7,7 +7,7 @@ class Public::UsersController < ApplicationController
     
     @user = User.find(params[:id])
     @posts = @user.posts.all
-  
+    
     
   end
   
@@ -21,10 +21,8 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    
-    
     @user = User.find(params[:id])
-    
+   
   end
   
   def update
