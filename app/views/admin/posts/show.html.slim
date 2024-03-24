@@ -11,3 +11,9 @@ h5 = @post.genre.name
 p = @post.introduction
 p = @post.created_at.strftime("%Y/%m/%d")
 = link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？"
+
+- @comments.each do |comment|
+  = comment.body
+  = link_to "削除", admin_post_comment_path(comment, post_id: comment.post), method: :delete, "data-confirm" => "本当に消しますか？"
+  br
+  

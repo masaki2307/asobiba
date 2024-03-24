@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   get 'users/confirm' => "public/users#confirm", as: 'confirm'
   resources :users, only:[:show, :edit, :update, :destroy], module: 'public'
   # post
-  resources :posts, only:[:show, :edit, :index, :new, :create, :update, :destroy], module: 'public'
-
+  resources :posts, only:[:show, :edit, :index, :new, :create, :update, :destroy], module: 'public' do
+  # comment
+    resources :comments, only:[:create]
+  end
+  # favorite
+   post 'favorite/:id' => 'public/favorites#create', as: 'create_favorite'
+   delete 'favorite/:id' => 'public/favorites#destroy', as: 'destroy_favorite'
   # home
   
   root to: "public/homes#top"
@@ -34,10 +39,12 @@ Rails.application.routes.draw do
    namespace :admin do
     resources :users, only:[:show, :update]
     get '/users/:id/post_list' => "users#post_list", as: 'post_list'
-  end
+    end
   # post
     namespace :admin do
-    resources :posts, only:[:show, :index, :destroy]
+    resources :posts, only:[:show, :index, :destroy] do
+        resources :comments, only:[:destroy]
+    end
     end
   # genre
     namespace :admin do
