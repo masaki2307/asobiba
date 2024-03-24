@@ -1,0 +1,9 @@
+- if user_signed_in?  
+  - if current_user.favorited_by?(@post.id)
+    = link_to destroy_favorite_path(@post), method: :DELETE, remote: true do
+      i.fa-solid.fa-thumbs-up
+      = @post.favorites.count
+  - else
+    = link_to create_favorite_path(@post), method: :POST, remote: true do
+      i.fa-regular.fa-thumbs-up
+      = @post.favorites.count

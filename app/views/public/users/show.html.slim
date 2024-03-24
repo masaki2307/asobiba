@@ -12,8 +12,14 @@ p ユーザーネーム
 
 p 一言
 = @user.introduction
-
+- total = 0
 /いいね数追加予定
+- @posts.each do |post|
+  - total += post.favorites.count
+.
+  | 総いいね
+  = total
+
 - if @user == current_user
 - unless @user.guest_user?
     = link_to "マイページを編集", edit_user_path(@user)

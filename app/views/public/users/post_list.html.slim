@@ -1,6 +1,5 @@
 = render 'public/users/header', users: @users
 h3 = "#{@user.name}さんの投稿履歴"
-- rev = 1
 - @posts.each do |post|
   = link_to post_path(post) do 
     = image_tag post.get_image(100,100)

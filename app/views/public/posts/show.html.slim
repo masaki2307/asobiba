@@ -9,7 +9,10 @@ p = @post.introduction
 p = @post.created_at.strftime("%Y/%m/%d")
 - if @post.user.id == current_user.id
   = link_to "変更",  edit_post_path(@post, user_id: @post.user)
-  
+/いいね
+div id="favorite"
+  = render 'public/favorites/favorite', users: @users
+
 h4 この投稿にコメントが出来ます
 
 p
@@ -32,4 +35,3 @@ p
   = comment.created_at.strftime("%Y/%m/%d")
   = comment.body
   br
-  

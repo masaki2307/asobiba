@@ -8,6 +8,7 @@ class User < ApplicationRecord
     
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
+    has_many :favorites, dependent: :destroy
     validates :name, presence: true
     validates :email, presence: true
     
@@ -19,12 +20,17 @@ class User < ApplicationRecord
       user.name = "guestuser"
       
      end
+     
      end
      
      def guest_user?
       email == GUEST_USER_EMAIL
      end
-    
+     
+     def favorited_by?(post_id)
+        favorites.where(post_id: post_id).exists?
+     end
+     
   def get_profile_image(width, height)
     
   unless profile_image.attached?
