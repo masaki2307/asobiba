@@ -10,6 +10,10 @@ p ユーザーネーム
 
 /ジャンル追加予定
 p 好きなジャンル
+- if @user.like_genre?
+  = Genre.find(@user.like_genre).name
+- else
+  | なし
 
 p 一言
 = @user.introduction

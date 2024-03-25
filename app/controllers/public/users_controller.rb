@@ -28,6 +28,7 @@ class Public::UsersController < ApplicationController
   def update
     
     @user = User.find(params[:id])
+    @user.like_genre = Genre.find_by(name: params[:user][:like_genre])
     
     if @user.update(user_params)
      
@@ -52,7 +53,7 @@ class Public::UsersController < ApplicationController
   
   def user_params
     
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image, :like_genre)
     
   end
   

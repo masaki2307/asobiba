@@ -16,6 +16,9 @@ h3 ユーザー内容編集
   .field
     = f.file_field :profile_image, accept: "image/*"
     
+  .field
+    = f.label :like_genre, "ジャンル名"
+    = f.select :like_genre, options_from_collection_for_select(Genre.all, :id, :name)
     
   .field
     = f.label :introduction, "自己紹介(一言)"
