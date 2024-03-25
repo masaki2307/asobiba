@@ -9,6 +9,9 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "script.js"
 import 'jquery'
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"; 
 import Raty from "raty.js"
 window.raty = function(elem,opt) {
     let raty =  new Raty(elem,opt)
