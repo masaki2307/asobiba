@@ -1,33 +1,40 @@
 = render 'public/users/header', users: @users
-
-h2 Sign up
-
-= form_with model: @user, url: user_registration_path do |f|
-
-  = render "public/shared/error_messages", resource: resource
-
-  .field
-    = f.label :name, "ユーザーネーム"
-    br
-    = f.text_field :name
-
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em "(#{@minimum_password_length} characters minimum)"
-    br
-    = f.password_field :password, autocomplete: "new-password"
-
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-
-  .actions
-    = f.submit "Sign up"
-    = render "public/shared/links"
+.container
+  .row.mt-5
+    .col-md-5.offset-4
+      .card.row
+        .card-header.col-md-12.text-center.bg-info.text-light
+          h2 新規登録
+        
+        = form_with model: @user, url: user_registration_path do |f|
+        
+          = render "public/shared/error_messages", resource: resource
+        
+          .field.m-3
+            = f.label :name, "ユーザーネーム"
+            br
+            = f.text_field :name, class: "area "
+        
+          .field.m-3
+            = f.label :email
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "area "
+        
+          .field.m-3
+            = f.label :password
+            - if @minimum_password_length
+              em "(#{@minimum_password_length} characters minimum)"
+            br
+            = f.password_field :password, autocomplete: "new-password", class: "area "
+        
+          .field.m-3
+            = f.label :password_confirmation
+            br
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "area "
+        
+          .actions.col-md-12.text-center.my-3
+            = f.submit "新規登録", class: "btn btn-success"
+      .mt-4
+        | ログイン済みの方は
+        = render "public/shared/links"
+        | をクリック
