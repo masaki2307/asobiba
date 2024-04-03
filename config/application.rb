@@ -13,6 +13,7 @@ module Asobiba
     config.generators.template_engine = :slim
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
+    config.assets.compile = true
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

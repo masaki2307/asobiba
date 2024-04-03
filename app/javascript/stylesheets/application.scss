@@ -189,3 +189,41 @@ li {
 .ml-b {
   margin-left: 50px;
 }
+
+.main-visual {
+  width: 90%;
+  height: 300px;
+  background-image: url('/assets/temple2.jpg');
+  margin: auto;
+  background-size: contain;
+   
+  z-index: 1;
+  position: re;
+}
+
+.main-visual-content {
+  background-color: rgba(0,0,0,0.5);
+  height: 300px;
+}
+
+.balloon{
+  position: relative;
+  padding: 25px;
+  background-color: #fff3ad;
+  width: 15%;
+  margin: 15px;
+}
+
+.balloon::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: 20px;
+  bottom: -15px;
+  border-top: 15px solid #fff3ad;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+
