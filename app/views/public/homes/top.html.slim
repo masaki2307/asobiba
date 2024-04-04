@@ -13,13 +13,13 @@
     .row
       .col-md-2.offset-1.card.border.border-warning
         p.text-center お試しログインはこちら！
-        .mb-3.text-center = link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post, class: "text-dark btn btn-warning"
+        .mb-3.text-center = link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post, class: "text-light btn btn-warning"
       .col-md-2.offset-2.card.border.border-primary
         p.text-center 新規の方はこちら！
-        = link_to "新規登録", new_user_registration_path, class: "text-dark btn btn-primary mb-3"
+        = link_to "新規登録", new_user_registration_path, class: "text-light btn btn-primary mb-3"
       .col-md-2.offset-2.card.border.border-success
         p.text-center 登録済みの方はこちら！
-        = link_to "ログイン", new_user_session_path, class: "text-dark btn btn-success mb-3" 
+        = link_to "ログイン", new_user_session_path, class: "text-light btn btn-success mb-3" 
         
         
 .container

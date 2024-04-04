@@ -1,17 +1,21 @@
-= link_to "logo", root_path
+.navbar.navbar-expand-md.navbar-light.py-3
+  .container-fluid
+    = link_to "logo", root_path, class: "mx-5"
+    | 管理者ページ
+    
+    - if admin_signed_in?
+      ui.navbar-nav.ml-auto.mx-5
+        li = link_to "ユーザー一覧", admin_path
+        li = link_to "投稿一覧", admin_posts_path
+        li = link_to "ジャンル", admin_genres_path
+        li = link_to "ログアウト", destroy_admin_session_path, method: :delete
+                
+    - else
+      ui.navbar-nav.ml-auto.mx-5
+        li.nav-item = link_to "投稿一覧", posts_path, class: "text-secondary"
+        li.nav-item = link_to "新規登録", new_user_registration_path, class: "text-secondary"
+        li.nav-item = link_to "ログイン", new_user_session_path, class: "text-secondary"
 
-- if admin_signed_in?
-
-  li = link_to "ユーザー一覧", admin_path
-  li = link_to "投稿一覧", admin_posts_path
-  li = link_to "ジャンル", admin_genres_path
-  li = link_to "ログアウト", destroy_admin_session_path, method: :delete
-
-- else
-
-  li = link_to "新規登録", new_user_registration_path
-  li = link_to "ログイン", new_user_session_path
-
-= form_with url: admin_posts_path, method: :get do |f| 
-  = f.text_field :search, placeholder: "ゲームタイトルorユーザーネーム", class: "search"
-  = f.submit "検索"  
+    = form_with url: admin_posts_path, method: :get do |f| 
+      = f.text_field :search, placeholder: "ゲームタイトルorユーザーネーム", class: "search"
+      = f.submit "検索", class: "btn btn-secondary mx-3"

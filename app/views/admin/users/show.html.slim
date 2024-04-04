@@ -1,23 +1,40 @@
 = render 'admin/homes/header', admins: @admins
-h3 "#{@user.name}さんのマイページ"
+.container
+  .row.mt-5
+    .offset-2.col-md-9.card
+      .row
+        h2.card-header.col-md-12.text-center.text-light.bg-primary = "#{@user.name}さんのマイページ"
+        .card-body
+          .col-md-12.text-center
+            = image_tag @user.get_profile_image(100,100)
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 ユーザーネーム
+            .col-md-6 = @user.name
+          
+          
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 好きなジャンル
+            - if @user.like_genre?
+              .col-md-6 = Genre.find(@user.like_genre).name
+            - else
+              .col-md-6 
+                | なし
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 一言
+            - if @user.introduction?
+              .col-md-6 = @user.introduction
+            - else
+              .col-md-6
+                | -
+          .row
+            .col-md-4.mt-4 = link_to "投稿履歴一覧はこちら", admin_post_list_path(@user), class: "btn btn-primary"    
+            .card.col-md-4.py-3.offset-4
+              = form_with model: @user, url: admin_user_path do |f|
+                = f.radio_button :is_active , true
+                = f.label :is_active_true, "入会", class: "mr-3"
+                = f.radio_button :is_active , false
+                = f.label :is_active_false, "退会", class: "mr-5"
+    
+                = f.submit "更新", class: "btn btn-warning px-2"
 
-= image_tag @user.get_profile_image(100,100)
-
-p ユーザーネーム
-= @user.name
-
-
-/ジャンル追加予定
-
-p 一言
-= @user.introduction
-
-= form_with model: @user, url: admin_user_path do |f|
-  = f.radio_button :is_active , true
-  = f.label :is_active_true, "入会"
-  = f.radio_button :is_active , false
-  = f.label :is_active_false, "退会"
-
-  = f.submit "更新"
-
-= link_to "投稿履歴一覧はこちら", admin_post_list_path(@user)
+          

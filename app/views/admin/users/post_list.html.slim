@@ -1,4 +1,8 @@
 = render 'admin/homes/header', admins: @admins
-h3 = "#{@user.name}さんの投稿履歴"
 
-= render 'admin/posts/index', admins: @admins
+.container
+  .row.mt-5
+    h3.col-md-12
+     i.fa-solid.fa-user
+     = "#{@user.name}さんの投稿履歴"
+    = render 'admin/posts/index', admins: @admins
