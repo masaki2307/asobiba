@@ -1,4 +1,5 @@
 /*global $ */
+/*global raty */
 $(document).on('turbolinks:load', function() {
   $("#modal-open").on('click',function() {
      $("#modal-overlay").fadeIn("fast");

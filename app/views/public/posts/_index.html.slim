@@ -1,5 +1,11 @@
 .col-md-12.row
-  .col-md-2.btn.btn-primary.text-light.ml-2#duration-open.w-20 期間を絞り込む   
+  .card
+    label.text-center.pt-2.px-2
+      = link_to "新着順 ", posts_path(sort: "created_at DESC")
+      | | 
+      = link_to " 評価順", posts_path(sort: "review DESC")
+  .col-md-2.btn.btn-primary.text-light.ml-2#duration-open.w-20 期間を絞り込む  
+
 .row.w-100
   
   - @posts.each do |post|

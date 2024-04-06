@@ -27,7 +27,6 @@
     .balloon
       h4.text-danger.font-weight-bold.text-center 新着投稿
     .row.w-100
-      - total = 0
       - @posts.each do |post|
         .my-3.col-md-3.col-sm-12.offset-1
           .card
@@ -70,8 +69,5 @@
                 readOnly: true,
               };
                   raty(elem, opt);
-                });  
-                
-        - total +=1
-        - if total == 3
-          - break        
+                }); 
+ 
