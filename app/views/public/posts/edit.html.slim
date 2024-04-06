@@ -1,38 +1,65 @@
 = render 'public/users/header', users: @users
-h3 投稿編集
-
-- if @post.errors.any?
-   h2 = "#{@post.errors.count} 個のエラーが発生してます"
-   ul
-     - @post.errors.full_messages.each do |message|
-        li = message
-
-= form_with model: @post do |f|
-
-  .field
-    = f.label :title, "タイトル"
-    = f.text_field :title, placeholder: "ゲームタイトルを入れてください"
+.container
+  .row.mt-5
+    .col-md-5.offset-4
+      .card.row
+        .card-header.col-md-12.text-center.bg-info.text-light 投稿編集
+        .card-body.row
+          - if @post.errors.any?
+             h2 = "#{@post.errors.count} 個のエラーが発生してます"
+             ul
+               - @post.errors.full_messages.each do |message|
+                  li = message
+          
+          = form_with model: @post do |f|
+          
+            .field.col-md-12.text-center.my-3
+              .col-md-12 = f.label :title, "タイトル"
+              .col-md-12 = f.text_field :title, placeholder: "ゲームタイトルを入れて下さい", class: "w-100"
+            .row 
+              .col-md-6.text-center = "評価： #{@post.review}点"
+              div.col-md-6 id="star_#{@post.id}"
+            
+            .field.row.col-md-12.text-center.my-3
+          
+              .col-md-6 = f.label :genre_name, "ジャンル名"
+              .col-md-6 = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
+          
+            .field.row.col-md-12.text-center.my-3
+              .col-md-12 = f.file_field :image, accept: "image/*"
+          
+            .field.row.col-md-12.text-center.my-3
+              .col-md-12 = f.label :introduction, "感想orレビュー"
+              .col-md-12 = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください", class: "body-area"
+              
+              .col-md-12.mt-3 = f.submit "変更を保存する", class: "btn btn-success"
+      .row  
+        .confirm-open.btn.btn-danger.my-3.offset-10 削除
+        = link_to "", post_path(id: @post, user_id: @post.user.id), method: :delete, class: "delete"
     
-  = "評価： #{@post.review}点"
-  div id="star_#{@post.id}"
-    
-  .field
-
-    = f.label :genre_name, "ジャンル名"
-    = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
-
-  .field
-    = f.file_field :image, accept: "image/*"
-
-  .field
-    = f.label :introduction, "感想orレビュー"
-    = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください"
-
-    = f.submit "変更を保存"
-
-    = link_to "削除", post_path(id: @post, user_id: @post.user.id) , method: :delete, "data-confirm" => "本当に消しますか？"
-    
+.confirm-overlay.modal-overlay
+  .confirm-content.text-center.modal-content
+    h4.mt-3 本当に削除しますか？
+    .row.text-center
+      .col-md-6.row
+        .confirm-close.btn.btn-primary.col-md-6.offset-6 キャンセル
+      .col-md-6.row.text-center
+        .confirm-action.btn.btn-danger.col-md-6.offset-3  削除する
 
   /レビューのjavascript
-  
- 
+
+  javascript:
+    $(document).on('turbolinks:load', function() {
+      let elem = document.querySelector('#star_#{@post.id}');
+      if (elem == null) return;
+        elem.innerHTML = ""
+      let opt = {
+        starOn: "#{asset_path('star-on.png')}",
+        starOff: "#{asset_path('star-off.png')}",
+        starHalf: "#{asset_path('star-half.png')}",
+        score: '#{@post.review}',
+        half: true ,
+        readOnly: true,
+      };
+          raty(elem, opt);
+        });   

@@ -1,3 +1,73 @@
 = render 'public/users/header', users: @users
-
-= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post
+.main-visual
+  .main-visual-content
+    h5.text-center.text-light.pt-2
+      | ようこそあそびばへ！
+      br
+      | このサイトではあなたがプレイしたゲームの感想・レビューを投稿できます！
+      br
+      | 好きなゲームを共有したい！感想を残したい！という方ご気軽にご利用ください！！
+    h5.mt-5.text-center.text-light
+      | 投稿・コメントにはユーザー登録が必要です
+    .mt-5  
+    .row
+      .col-md-2.offset-1.card.border.border-warning
+        p.text-center お試しログインはこちら！
+        .mb-3.text-center = link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post, class: "text-light btn btn-warning"
+      .col-md-2.offset-2.card.border.border-primary
+        p.text-center 新規の方はこちら！
+        = link_to "新規登録", new_user_registration_path, class: "text-light btn btn-primary mb-3"
+      .col-md-2.offset-2.card.border.border-success
+        p.text-center 登録済みの方はこちら！
+        = link_to "ログイン", new_user_session_path, class: "text-light btn btn-success mb-3" 
+        
+        
+.container
+  .card.my-5
+    .balloon
+      h4.text-danger.font-weight-bold.text-center 新着投稿
+    .row.w-100
+      - @posts.each do |post|
+        .my-3.col-md-3.col-sm-12.offset-1
+          .card
+            = link_to post_path(post) do
+             .img-fluid = image_tag post.get_image(200,100), class: "img-responsive w-100"
+            .card-body
+              h5 = post.title
+              
+              div id="star_#{post.id}"
+              = "評価：#{post.review}点"
+              - if post.introduction.length >= 6
+                p.mt-2 = post.introduction[0..4] += "..."
+              - else
+                p.mt-2 = post.introduction
+              
+              p
+                i.fa-solid.fa-user
+                |  
+                = post.user.name
+      
+              i.fa-solid.fa-thumbs-up
+              label.mr-2 = post.favorites.count
+              - comment_total = 0
+              - post.comments.each do |comment|
+                - comment_total += 1 
+              i.fa-regular.fa-comment-dots
+              = comment_total
+          
+          javascript:
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_#{post.id}');
+              if (elem == null) return;
+                elem.innerHTML = ""
+              let opt = {
+                starOn: "#{asset_path('star-on.png')}",
+                starOff: "#{asset_path('star-off.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                score: '#{post.review}',
+                half: true ,
+                readOnly: true,
+              };
+                  raty(elem, opt);
+                }); 
+ 

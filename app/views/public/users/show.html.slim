@@ -1,37 +1,58 @@
 = render 'public/users/header', users: @users
-
-h2 = "#{@user.name}さんのマイページ"
-
-= image_tag @user.get_profile_image(100,100)
-
-p ユーザーネーム
-= @user.name
-
-
-/ジャンル追加予定
-p 好きなジャンル
-- if @user.like_genre?
-  = Genre.find(@user.like_genre).name
-- else
-  | なし
-
-p 一言
-= @user.introduction
-- total = 0
-/いいね数追加予定
-- @posts.each do |post|
-  - total += post.favorites.count
-.
-  | 総いいね
-  = total
-
-- if @user == current_user
-- unless @user.guest_user?
-    = link_to "マイページを編集", edit_user_path(@user)
-
-br
-= link_to "ログアウト", destroy_user_session_path, method: :delete
-br
-= link_to "新規投稿", new_post_path
-br
-= link_to "投稿履歴一覧はこちら", post_list_path
+.container
+  .row.mt-5
+    .col-md-2
+      table.table.table-bordered.mt-5
+        tbody
+          tr
+            th.bg-info.text-light
+                | いいね  
+                i.fa-solid.fa-thumbs-up
+            td
+              - favorite_total = 0
+              - @posts.each do |post|
+                - favorite_total += post.favorites.count
+              = favorite_total
+          tr    
+            th.bg-info.text-light
+              | 投稿数 
+              i.fa-solid.fa-book-open
+            td
+              - post_total = 0
+              - @posts.each do |post|
+                - post_total += 1
+              = post_total  
+              
+    .col-md-9.card
+      .row
+        h2.card-header.col-md-12.text-center.text-light.bg-primary = "#{@user.name}さんのマイページ"
+        .card-body
+          .col-md-12.text-center
+            = image_tag @user.get_profile_image(100,100)
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 ユーザーネーム
+            .col-md-6 = @user.name
+          
+          
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 好きなジャンル
+            - if @user.like_genre?
+              .col-md-6 = Genre.find(@user.like_genre).name
+            - else
+              .col-md-6 
+                | なし
+          .row.col-md-12.text-center.my-3
+            h5.col-md-6 一言
+            - if @user.introduction?
+              .col-md-6 = @user.introduction
+            - else
+              .col-md-6
+                | -
+          .row.col-md-12.my-5
+            - if @user == current_user
+            - unless @user.guest_user?
+              .col-md-4.text-center = link_to "マイページを編集", edit_user_path(@user), class: "btn btn-primary"
+         
+            .col-md-4.text-center = link_to "新規投稿", new_post_path, class: "btn btn-success"
+            
+            .col-md-4.text-right = link_to "投稿履歴一覧はこちら", post_list_path, class: "btn btn-primary"

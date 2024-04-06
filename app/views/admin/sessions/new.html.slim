@@ -1,28 +1,24 @@
-h2 Log in
-
-= form_with model: @admin, url: admin_session_path do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-
-
-  .field
-
-    = f.label :password
-
-    br
-
-    = f.password_field :password, autocomplete: "current-password"
-
-
-
-
-
-
-  .actions
-    = f.submit "Log in"
-
-
+= render 'admin/homes/header', admins: @admins
+.container
+  .row.mt-5
+    .col-md-5.offset-4
+      .card.row
+        .card-header.col-md-12.text-center.bg-info.text-light
+          h2 ログイン
+        
+        = form_with model: @admin, url: admin_session_path do |f|
+        
+          .field.m-3
+            = f.label :email, "メールアドレス"
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "area "
+        
+          .field.m-3
+            = f.label :password, "パスワード"
+            br
+            = f.password_field :password, autocomplete: "current-password", class: "area"
+  
+          .actions.m-3.col-md-7.text-right
+            = f.submit "ログイン", class: "btn btn-success"
 
 = render "admin/shared/links"

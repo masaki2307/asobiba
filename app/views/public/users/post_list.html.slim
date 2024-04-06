@@ -1,3 +1,10 @@
 = render 'public/users/header', users: @users
-h3 = "#{@user.name}さんの投稿履歴"
-= render 'public/posts/index', users: @users
+
+.container
+  .row.mt-5
+    h3.col-md-12 
+     i.fa-solid.fa-user
+     = " #{@user.name}さんの投稿履歴"
+    = render 'public/posts/index', users: @users
+
+= paginate @posts

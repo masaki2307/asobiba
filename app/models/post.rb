@@ -10,7 +10,9 @@ class Post < ApplicationRecord
    validates :introduction, presence: true
    validates :review, presence: true 
    
-
+  def favorite_count
+    favorite.count
+  end
    
     def get_image(width, height)
 

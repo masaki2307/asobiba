@@ -1,19 +1,49 @@
 = render 'admin/homes/header', admins: @admins
+.container
+  .row.col-md-9.offset-2.mt-5.w-auto
+    .card.card-body.col-md-12.border-info
+      .row
+        .col-md-4.w-100
+          = image_tag @post.get_image(100,100), class: "w-100"
+        .col-md-8
+          h2.row.col-md-12
+            .mb-3.col-md-11 = @post.title
+          h5 = "このゲームへの評価： #{@post.review}点"
+          = render 'public/posts/review', users: @users
+          h5.my-4 = "ゲームジャンル： #{@post.genre.name}"
+          
+          p.body-area.border-secondary = @post.introduction
+        .col-md-12.row.mt-4
+          .col-md-9.row.pt-2
+            | 投稿者： 
+            = link_to user_path(@post.user) do
+              .mr-2 = @post.user.name
+            = "投稿日時：#{@post.created_at.strftime("%Y/%m/%d")}"
+          /いいね
+          .col-md-3.row.ml-3
+      
+            - commet_total = 0
+            - @post.comments.each do |comment|
+              - commet_total += 1 
+            i.fa-regular.fa-comment-dots.fa-2x.mx-2.ml-4
+            .pt-2 = commet_total
+        .offset-10 = link_to "削除", admin_post_path(@post), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"
+    .col-md-12
+     
+      - comment_total = 0 
+      - @comments.each do |comment|
+        .card.border-dark.my-5.col-md-12
+          .row.col-md-12
+            .col-md-3
+              i.fa-solid.fa-user.mr-1  
+              = comment.user.name
+            .col-md-9 = comment.created_at.strftime("%Y/%m/%d %H:%M")
+            .ml-4.mt-3 コメント
+            .card-body.w-comment.border-dark.border.mb-3.ml-4
+              .col-md-12 = comment.body
+            .offset-11 = link_to "削除", admin_post_comment_path(comment, post_id: comment.post), class: "btn btn-danger mb-3", method: :delete, "data-confirm" => "本当に消しますか？"
 
-h3 ゲームタイトル
-= "評価： #{@post.review}点"
-= render 'public/posts/review', users: @users
-= image_tag @post.get_image(100,100)
 
 
 
-h5 = @post.genre.name
-p = @post.introduction
-p = @post.created_at.strftime("%Y/%m/%d")
-= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？"
-
-- @comments.each do |comment|
-  = comment.body
-  = link_to "削除", admin_post_comment_path(comment, post_id: comment.post), method: :delete, "data-confirm" => "本当に消しますか？"
-  br
   

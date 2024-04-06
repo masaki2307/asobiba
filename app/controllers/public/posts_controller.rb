@@ -9,7 +9,9 @@ class Public::PostsController < ApplicationController
       @genre = Genre.find_by(name: params[:genre_name])
       @posts = @genre.posts.page(params[:page])
     elsif @start_date && @end_date
-       @posts = Post.where(created_at: @start_date..@end_date).page(params[:page]) 
+      @posts = Post.where(created_at: @start_date..@end_date).page(params[:page]) 
+    elsif params[:sort].present?  
+      @posts = Post.order(params[:sort]).page(params[:page]) 
     else
       @posts = Post.page(params[:page])
     end
@@ -75,5 +77,6 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:introduction, :title, :image, :user_id, :genre_id, :review)
 
   end
+  
 
 end
