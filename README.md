@@ -19,8 +19,12 @@
 ・同じゲームをプレイする人を探している時
 ​
 ## 設計書
-
-​
+ワイヤーフレーム　https://drive.google.com/file/d/1op1V3YvdOOq3Tjaa0Ii7RAgFepnrYVsV/view?usp=sharing<br>
+UI　FLOW図　https://drive.google.com/file/d/1XGjS8le4KoL4GuLo7s0jI63uU8WZySvI/view?usp=sharing<br>
+ER図　https://drive.google.com/file/d/1OSbwvxThk3hwl86hpbi-TzZpNLHKrFGK/view?usp=sharing<br>
+機能一覧　https://docs.google.com/spreadsheets/d/1903TEqYfoKPFR-ZN0n9cZJDwyjBZGGAD8AXE-MdPqzU/edit?usp=sharing<br>
+テーブル定義書　https://docs.google.com/spreadsheets/d/1iVYt9-w8GBD0jScJZsBcH1YIjXCcXa3oyZ9o6DT6dXI/edit?usp=sharing<br>
+詳細設計書　https://docs.google.com/spreadsheets/d/1_GJuvTEswBqp_bGalATAmA0f1ODwhAj9A1fQmQR3Zyw/edit?usp=sharing
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -29,8 +33,7 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
-
+designevo様　https://www.designevo.com<br>
+ゲームまてりあるず様　 https://game-materials.com/
+                      
 ##### ※ゲーム画像、動画については著作権的な配慮が必要なため、フリー素材で代替しています
