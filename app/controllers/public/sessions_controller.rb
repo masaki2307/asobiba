@@ -13,7 +13,7 @@ class Public::SessionsController < Devise::SessionsController
         if user.is_active
          return
         else
-
+          flash[:alert] = "退会済みのユーザーです"
           redirect_to  new_user_registration_path
 
         end

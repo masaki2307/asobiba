@@ -14,8 +14,8 @@ class Public::UsersController < ApplicationController
   def withdraw
     @user = current_user
     @user.update(is_active: false)
-    flash[:notice] = "退会を完了しました"
     reset_session
+    flash[:notice] = "退会を完了しました"
     redirect_to root_path
     
   end
@@ -31,7 +31,7 @@ class Public::UsersController < ApplicationController
     @user.like_genre = Genre.find_by(name: params[:user][:like_genre])
     
     if @user.update(user_params)
-     
+    flash[:notice] = "ユーザー情報を更新しました" 
     redirect_to user_path(@user)
       
     else

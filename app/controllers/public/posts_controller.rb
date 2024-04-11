@@ -7,11 +7,16 @@ class Public::PostsController < ApplicationController
       @posts = Post.joins(:user).where("title LIKE (?) OR users.name LIKE (?)", "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]) 
     elsif params[:genre_name].present?
       @genre = Genre.find_by(name: params[:genre_name])
+      
       @posts = @genre.posts.page(params[:page])
     elsif @start_date && @end_date
       @posts = Post.where(created_at: @start_date..@end_date).page(params[:page]) 
-    elsif params[:sort].present?  
-      @posts = Post.order(params[:sort]).page(params[:page]) 
+    elsif params[:sort_created].present?  
+      @posts = Post.order(created_at: :desc).page(params[:page]) 
+    elsif params[:sort_review].present?  
+      # @posts = Post.where(id: Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id)).page(params[:page]) 
+      posts_arr = Post.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+      @posts = Kaminari.paginate_array(posts_arr).page(params[:page])
     else
       @posts = Post.page(params[:page])
     end
@@ -35,8 +40,10 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.genre_id = params[:post][:genre_id]
     if @post.save
+      flash[:notice] = "投稿完了しました！"
       redirect_to post_path(@post)
     else
+      flash[:alert] = "投稿に失敗しました"
       render :new
     end
   end

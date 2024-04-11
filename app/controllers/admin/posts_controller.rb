@@ -18,14 +18,22 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
-
-    @post = Post.find(params[:id])
-    @comments = @post.comments.all
+    if Post.exists?(id: params[:id])
+       @post = Post.find(params[:id])
+       @comments = @post.comments.all
+    else 
+      #@post = Post.find(params[:id])
+      #@user = @post.user
+      
+      redirect_to admin_posts_path
+    end    
+    
   end
   
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to admin_posts_path
   end
   

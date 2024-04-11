@@ -8,9 +8,10 @@
         .col-md-8
           h2.row.col-md-12
             .mb-3.col-md-11 = @post.title
-            - if @post.user.id == current_user.id
-              = link_to edit_post_path(@post, user_id: @post.user) do
-                i.fa-solid.fa-pen-to-square
+            - if user_signed_in?
+              - if @post.user.id == current_user.id
+                = link_to edit_post_path(@post, user_id: @post.user) do
+                  i.fa-solid.fa-pen-to-square
           h5 = "このゲームへの評価： #{@post.review}点"
           = render 'public/posts/review', users: @users
           h5.my-4 = "ゲームジャンル： #{@post.genre.name}"
@@ -28,7 +29,7 @@
               = render 'public/favorites/favorite', users: @users
             - unless user_signed_in?
               i.fa-solid.fa-thumbs-up.fa-2x
-              = @post.favorites.count
+              .p-2 = @post.favorites.count
    
             - commet_total = 0
             - @post.comments.each do |comment|
