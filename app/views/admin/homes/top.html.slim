@@ -1,0 +1,27 @@
+= render 'admin/homes/header', admins: @admins
+.container
+  .row
+    h3.text-center.bg-secondary.text-light.my-5.col-md-12 ユーザー一覧
+    table.table.table-hover.table-bordered
+      thead
+        tr
+          th ID
+          th ユーザーネーム
+          th 投稿数
+          th 入会・退会
+    
+    
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.id
+            td
+              = link_to admin_user_path(user) do
+                = user.name
+            - total = 0
+            - user.posts.each do
+              - total += 1
+            td = total
+            td = user.is_active ? "入会" : "退会"
+          
+= paginate @users

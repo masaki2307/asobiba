@@ -1,0 +1,27 @@
+= render 'public/users/header', users: @users
+.container#confirm_top
+  .row
+    .col-6.offset-3.text-center
+      h3.my-3 本当に退会してもよろしいですか？
+      
+      p.my-3 退会すると今まで投稿した履歴が見れなくなります。
+      br
+      p.my-3 ※投稿した内容は消えません
+      br
+      p.my-3 退会する場合は,「退会する」をクリックしてください
+      
+      .
+        = link_to "退会しない", user_path(current_user), class: "btn btn-success mx-3"
+        .btn.btn-danger#confirm-open 退会する
+        
+   
+        
+        #confirm-overlay
+          #confirm-content.text-center
+            h4.mt-3 本当に退会しますか？
+            .row.text-center
+              .col-md-6.row
+                #confirm-close.btn.btn-primary.col-md-6.offset-6 キャンセル
+              .col-md-6.row.text-center
+                #confirm-action.btn.btn-danger.col-md-6.offset-3  退会する
+= link_to "", withdraw_path, method: :patch, id: "delete"  

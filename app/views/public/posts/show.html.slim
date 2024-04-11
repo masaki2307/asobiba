@@ -1,0 +1,69 @@
+= render 'public/users/header', users: @users
+.container
+  .row.col-md-9.offset-2.mt-5.w-auto
+    .card.card-body.col-md-12.border-info
+      .row
+        .col-md-4.w-100
+          = image_tag @post.get_image(100,100), class: "w-100"
+        .col-md-8
+          h2.row.col-md-12
+            .mb-3.col-md-11 = @post.title
+            - if user_signed_in?
+              - if @post.user.id == current_user.id
+                = link_to edit_post_path(@post, user_id: @post.user) do
+                  i.fa-solid.fa-pen-to-square
+          h5 = "このゲームへの評価： #{@post.review}点"
+          = render 'public/posts/review', users: @users
+          h5.my-4 = "ゲームジャンル： #{@post.genre.name}"
+          
+          p.body-area.border-secondary = @post.introduction
+        .col-md-12.row.mt-4
+          .col-md-9.row.pt-2
+            | 投稿者： 
+            = link_to user_path(@post.user) do
+              .mr-2 = @post.user.name
+            = "投稿日時：#{@post.created_at.strftime("%Y/%m/%d")}"
+          /いいね
+          .col-md-3.row.ml-3
+            div id="favorite"
+              = render 'public/favorites/favorite', users: @users
+            - unless user_signed_in?
+              i.fa-solid.fa-thumbs-up.fa-2x
+              .p-2 = @post.favorites.count
+   
+            - commet_total = 0
+            - @post.comments.each do |comment|
+              - commet_total += 1 
+            i.fa-regular.fa-comment-dots.fa-2x.mx-2.ml-4
+            .pt-2 = commet_total
+    .col-md-12
+      .card.mt-5.row.border-dark.mb-5
+        h4.col-md-6 この投稿にコメントが出来ます
+        .col-md-6.mb-3
+          | ※コメントするには
+          = link_to "ログイン", new_user_session_path
+          | の必要があります
+          
+        - if @comment.errors.any?
+          
+           ul
+             - @comment.errors.full_messages.each do |message|
+                li = message
+        - if user_signed_in?        
+          = form_with model: [@post, @comment], url: post_comments_path(@post) do |f|
+            .col-md-12 = f.text_area :body, maxlength: 250, class: "w-comment"
+            .col-md-12.text-right.mb-2 = f.submit "コメントする", class: "btn btn-success"
+      - comment_total = 0 
+      - @comments.each do |comment|
+        .card.border-dark.my-5.col-md-12
+          .row.col-md-12
+            .col-md-3
+              i.fa-solid.fa-user.mr-1  
+              = comment.user.name
+            .col-md-9 = comment.created_at.strftime("%Y/%m/%d %H:%M")
+            .ml-4.mt-3 コメント
+            .card-body.w-comment.border-dark.border.mb-3.ml-4
+              .col-md-12 = comment.body
+
+        
+      /

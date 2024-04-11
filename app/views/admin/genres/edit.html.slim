@@ -1,0 +1,16 @@
+= render 'admin/homes/header', admins: @admins
+.container
+  .row.mt-5
+    .h5.col-md-12 ジャンル変更
+    - if @genre.errors.any?
+      h2 = "#{@genre.errors.count} 個のエラーが発生してます"
+      ul
+        - @genre.errors.full_messages.each do |message|
+          li = message
+    
+    = form_with model: @genre, url: admin_genre_path do |f|
+      .field.col-md-12.my-5
+        = f.label :name, "ジャンル名", class: "mr-3"
+        = f.text_field :name, class: "mr-3"
+    
+        = f.submit "変更", class: "btn btn-warning"

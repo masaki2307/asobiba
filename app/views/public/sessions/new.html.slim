@@ -1,0 +1,33 @@
+= render 'public/users/header', users: @users
+
+.container
+  .row.mt-5
+    .col-md-5.offset-4
+      .card.row
+        .card-header.col-md-12.text-center.bg-info.text-light
+          h2 ログイン
+        
+        = form_with model: @user, url: user_session_path do |f|
+        
+          .field.m-3
+            = f.label :email, "メールアドレス"
+            br
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "area "
+        
+          .field.m-3
+            = f.label :password, "パスワード"
+            br
+            = f.password_field :password, autocomplete: "current-password", class: "area"
+        
+        
+          -if devise_mapping.rememberable?
+           .field.m-3
+              = f.check_box :remember_me
+              = f.label :remember_me
+        
+          .actions.m-3.col-md-7.text-right
+            = f.submit "ログイン", class: "btn btn-success"
+      .mt-4    
+        | 新規登録お済みで無い方は
+        = render "public/shared/links"
+        | をクリック

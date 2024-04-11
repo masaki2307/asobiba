@@ -1,0 +1,55 @@
+= render 'public/users/header', users: @users
+.container
+  .row.mt-5
+    .col-md-5.offset-4
+      .card.row
+        .card-header.col-md-12.text-center.bg-info.text-light 新規投稿
+        .card-body.row
+          - if @post.errors.any?
+             h2 = "#{@post.errors.count} 個のエラーが発生してます"
+             ul
+               - @post.errors.full_messages.each do |message|
+                  li = message
+          
+          = form_with model: @post do |f|
+          
+            .field.col-md-12.text-center.my-3
+              .col-md-12 = f.label :title, "タイトル"
+              .col-md-12 = f.text_field :title, placeholder: "ゲームタイトルを入れて下さい", class: "w-100"
+              
+            .field
+              .form-group#star.row.col-md-12.text-center.my-3
+                .col-md-6 = f.label :review,"評価"
+                
+                = f.hidden_field :review, id: :review_star, class: 'form-control'
+                #post_raty.col-md-6
+            .field.row.col-md-12.text-center.my-3
+          
+              .col-md-6 = f.label :genre_name, "ジャンル名"
+              .col-md-6 = f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name)
+          
+            .field.row.col-md-12.text-center.my-3
+              .col-md-12 = f.file_field :image, accept: "image/*"
+          
+            .field.row.col-md-12.text-center.my-3
+              .col-md-12 = f.label :introduction, "感想orレビュー"
+              .col-md-12 = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください", class: "body-area"
+              
+              .col-md-12.mt-3 = f.submit "新規投稿", class: "btn btn-success"
+              
+              
+              javascript:
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "#{asset_path('star-on.png')}",
+                    starOff: "#{asset_path('star-off.png')}",
+                    starHalf: "#{asset_path('star-half.png')}",
+                    scoreName: 'post[review]',
+                    half: true ,  
+                    
+                  };
+                  raty(elem, opt);
+                });

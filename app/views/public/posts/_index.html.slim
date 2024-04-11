@@ -1,0 +1,66 @@
+.col-md-12.row
+  .card
+    label.text-center.pt-2.px-2
+      = link_to "新着順 ", posts_path(sort_created: true)
+      | | 
+      = link_to " いいね順", posts_path(sort_review: true)
+  .col-md-2.btn.btn-primary.text-light.ml-2#duration-open.w-20 期間を絞り込む  
+
+.row.w-100
+  
+  - @posts.each do |post|
+    .my-3.col-md-3.col-sm-12
+      .card
+        = link_to post_path(post) do
+         .img-fluid = image_tag post.get_image(200,100), class: "img-responsive w-100"
+        .card-body
+          h5 = post.title
+          
+          div id="star_#{post.id}"
+          = "評価： #{post.review}点"
+          - if post.introduction.length >= 6
+            p.mt-2 = post.introduction[0..4] += "..."
+          - else
+            p.mt-2 = post.introduction
+          
+          p
+            i.fa-solid.fa-user
+            |  
+            = post.user.name
+  
+          i.fa-solid.fa-thumbs-up
+          label.mr-2 = post.favorites.count
+          - comment_total = 0
+          - post.comments.each do |comment|
+            - comment_total += 1 
+          i.fa-regular.fa-comment-dots
+          = comment_total
+            
+          javascript:
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#star_#{post.id}');
+              if (elem == null) return;
+                elem.innerHTML = ""
+              let opt = {
+                starOn: "#{asset_path('star-on.png')}",
+                starOff: "#{asset_path('star-off.png')}",
+                starHalf: "#{asset_path('star-half.png')}",
+                score: '#{post.review}',
+                half: true ,
+                readOnly: true,
+                
+              };
+                  raty(elem, opt);
+                });   
+      
+              
+#duration-overlay.modal-overlay
+  #duration-content.modal-content
+    .row
+      h3.col-md-12.text-center 投稿期間絞り込み
+      .row.col-md-12.mt-4.ml-2
+        .col-md-3.col-sm-6  = link_to "今日", posts_path(start_date: Date.today.beginning_of_day, end_date:  Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+        .col-md-3.col-sm-6 = link_to "前日", posts_path(start_date: Date.yesterday, end_date: Date.yesterday), class: "btn btn-primary duration_link w-100"
+        .col-md-3.col-sm-6 = link_to "1週間", posts_path(start_date: 1.week.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+        .col-md-3.col-sm-6 = link_to "1か月", posts_path(start_date: 1.month.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+      #duration-close.text-center.btn.btn-secondary 閉じる
