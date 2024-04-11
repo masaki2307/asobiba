@@ -77,6 +77,7 @@
     .balloon
       h4.text-danger.font-weight-bold.text-center 高評価
     .row.w-100
+      - total = 0
       - @reviews.each do |post|
         .my-3.col-md-3.col-sm-12.offset-1
           .card
@@ -120,4 +121,7 @@
               };
                   raty(elem, opt);
                 }); 
+        - total += 1
+        - if total == 3
+          - break
     .btn.btn-outline-secondary.offset-9 = link_to " いいねが多い投稿をもっと見る ⇒ ", posts_path(sort_review: true)
