@@ -33,16 +33,16 @@ $(document).on('turbolinks:load', function() {
 
 $(document).on('turbolinks:load', function() {
   
-  $(".confirm-open").on('click',function() {
-    $(".confirm-overlay").fadeIn("fast");
+  $("#confirm-open").on('click',function() {
+    $("#confirm-overlay").fadeIn("fast");
   });
   
-  $(".confirm-action").on("click", function(){
-    $(".delete")[0].click();
+  $("#confirm-action").on("click", function(){
+    $("#delete")[0].click();
   });
   
-  $(".confirm-close").on("click", function(){
-    $(".confirm-overlay").fadeOut("fast");
+  $("#confirm-close").on("click", function(){
+    $("#confirm-overlay").fadeOut("fast");
   });
   
 

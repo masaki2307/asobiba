@@ -4,6 +4,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  background-color: #e3f2fd;
+}
 
 #modal-overlay {
   display: none;  
@@ -95,7 +98,7 @@
   text-decoration: underline;
 } 
 
-.confirm-overlay {
+#confirm-overlay {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -106,7 +109,7 @@
   z-index: 1;
 }
 
-.confirm-content {
+#confirm-content {
   z-index: 2;
   position: fixed;
   top: 50%;
@@ -119,25 +122,27 @@
   background: #fff;
 }
 
-.confirm-close{
+#confirm-close{
   width: 30%;
   margin-top: 80px;
 }
 
-.confirm-action{
+#confirm-action{
   width: 30%;
   margin-top: 80px;
 }
 
-.delete{
-  
-}
 
 .area {
   width: 80%;
 }
 .navbar-nav {
   display: flex;
+}
+
+.img-logo {
+  width: 80px;
+  height: 80px;
 }
 
 li {
@@ -150,6 +155,7 @@ li {
 
 .navbar {
   background-color: #e3f2fd;
+  box-shadow:rgba(122, 122, 122, 0.0588235) 0px 0px 6px 3px;
 }
 
 
@@ -161,7 +167,7 @@ li {
   height: 165px;
 }
 
-.confirm_top {
+#confirm_top {
   margin-top: 150px;
 }
 
@@ -227,3 +233,21 @@ li {
   border-left: 15px solid transparent;
 }
 
+.flash-message {
+  border-radius: 5px;
+  padding: 16px 24px;
+  margin: 16px 0px;
+  width: 30%;
+}
+ 
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+ 
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}

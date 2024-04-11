@@ -2,10 +2,15 @@ ja:
   activerecord:
     attributes:
       post:
-        title: 名前
-        introduction: 一言
+        title: タイトル
+        introduction: 感想orレビュー
+        review: 評価
       comment:
         body: 一文字
+      genre:
+        name: ジャンル名
+      user:
+        name: ユーザーネーム
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

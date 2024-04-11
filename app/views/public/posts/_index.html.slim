@@ -1,9 +1,9 @@
 .col-md-12.row
   .card
     label.text-center.pt-2.px-2
-      = link_to "新着順 ", posts_path(sort: "created_at DESC")
+      = link_to "新着順 ", posts_path(sort_created: true)
       | | 
-      = link_to " 評価順", posts_path(sort: "review DESC")
+      = link_to " いいね順", posts_path(sort_review: true)
   .col-md-2.btn.btn-primary.text-light.ml-2#duration-open.w-20 期間を絞り込む  
 
 .row.w-100

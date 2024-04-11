@@ -18,9 +18,9 @@ class Post < ApplicationRecord
 
       unless image.attached?
 
-        file_path = Rails.root.join('app/assets/images/default-image.jpg')
+        file_path = Rails.root.join('app/assets/images/title_dot1.jpg')
 
-        image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+        image.attach(io: File.open(file_path), filename: 'title_dot1.jpg', content_type: 'image/jpeg')
 
       end
 

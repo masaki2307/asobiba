@@ -2,8 +2,7 @@
 .container
   .row.mt-5
     - if @user.errors.any?
-      h2 = "#{@user.errors.count} 個のエラーが発生してます"
-      ul
+      ul.col-md-7.offset-2
        - @user.errors.full_messages.each do |message|
         li = message
         
