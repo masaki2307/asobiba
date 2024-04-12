@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'users/confirm' => "public/users#confirm", as: 'confirm'
   resources :users, only:[:show, :edit, :update, :destroy], module: 'public'
   # post
+  get 'posts/:post_id/comments' => "public/comments#error"
   resources :posts, only:[:show, :edit, :index, :new, :create, :update, :destroy], module: 'public' do
   # comment
     resources :comments, only:[:create]

@@ -12,7 +12,10 @@ class Public::CommentsController < ApplicationController
       render template: "public/posts/show"
     end  
   end
-  
+  def error
+    @post = Post.find(params[:post_id])
+    redirect_to post_path(@post)
+  end
   private
   
   def comment_params
