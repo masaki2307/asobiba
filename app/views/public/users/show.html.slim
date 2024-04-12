@@ -50,9 +50,9 @@
                 | -
           .row.col-md-12.my-5
             - if @user == current_user
-            - unless @user.guest_user?
-              .col-md-4.text-center = link_to "マイページを編集", edit_user_path(@user), class: "btn btn-primary"
-         
-            .col-md-4.text-center = link_to "新規投稿", new_post_path, class: "btn btn-success"
+              - unless @user.guest_user?
+                .col-md-4.text-center = link_to "マイページを編集", edit_user_path(@user), class: "btn btn-primary"
+            - if @user == current_user
+              .col-md-4.text-center = link_to "新規投稿", new_post_path, class: "btn btn-success"
             
             .col-md-4.text-right = link_to "投稿履歴一覧はこちら", post_list_path, class: "btn btn-primary"

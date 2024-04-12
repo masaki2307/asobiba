@@ -5,4 +5,17 @@
     h3.col-md-12 
      i.fa-solid.fa-users
      | 投稿一覧
+    .col-md-12.row
+      .col-md-2.btn.btn-primary.text-light.ml-2#duration-open.w-20 期間を絞り込む  
+      
+    #duration-overlay.modal-overlay
+      #duration-content.modal-content
+        .row
+          h3.col-md-12.text-center 投稿期間絞り込み
+          .row.col-md-12.mt-4.ml-2
+            .col-md-3.col-sm-6  = link_to "今日", admin_posts_path(start_date: Date.today.beginning_of_day, end_date:  Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+            .col-md-3.col-sm-6 = link_to "前日", admin_posts_path(start_date: Date.yesterday, end_date: Date.yesterday), class: "btn btn-primary duration_link w-100"
+            .col-md-3.col-sm-6 = link_to "1週間", admin_posts_path(start_date: 1.week.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+            .col-md-3.col-sm-6 = link_to "1か月", admin_posts_path(start_date: 1.month.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
+          #duration-close.text-center.btn.btn-secondary 閉じる      
     = render 'admin/posts/index', admins: @admins

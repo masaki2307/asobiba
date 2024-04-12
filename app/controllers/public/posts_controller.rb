@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
   def index
     @start_date = params[:start_date]
     @end_date = params[:end_date]
@@ -85,5 +86,12 @@ class Public::PostsController < ApplicationController
 
   end
   
-
+  def is_matching_login_user
+    @post = Post.find(params[:id])
+    user = User.find(@post.user_id)
+    unless user.id == current_user.id
+     redirect_to root_path
+    end  
+  end
+  
 end

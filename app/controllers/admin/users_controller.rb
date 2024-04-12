@@ -16,8 +16,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def post_list
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page])
+    if @start_date && @end_date
+      @posts = @user.posts.where(created_at: @start_date..@end_date).page(params[:page])  
+    else   
+      @posts = @user.posts.page(params[:page])
+    end
   end
   
   private

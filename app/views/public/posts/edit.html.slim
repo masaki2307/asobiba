@@ -34,17 +34,17 @@
               
               .col-md-12.mt-3 = f.submit "変更を保存する", class: "btn btn-success"
       .row  
-        .confirm-open.btn.btn-danger.my-3.offset-10 削除
+        #confirm-open.btn.btn-danger.my-3.offset-10 削除
         = link_to "", post_path(id: @post, user_id: @post.user.id), method: :delete, class: "delete"
     
-.confirm-overlay.modal-overlay
-  .confirm-content.text-center.modal-content
-    h4.mt-3 本当に削除しますか？
-    .row.text-center
-      .col-md-6.row
-        .confirm-close.btn.btn-primary.col-md-6.offset-6 キャンセル
-      .col-md-6.row.text-center
-        .confirm-action.btn.btn-danger.col-md-6.offset-3  削除する
+        #confirm-overlay.modal-overlay
+          #confirm-content.text-center.modal-content
+            h4.mt-3 本当に削除しますか？
+            .row.text-center
+              .col-md-6.row
+                #confirm-close.btn.btn-primary.col-md-6.offset-6 キャンセル
+              .col-md-6.row.text-center
+                #confirm-action.btn.btn-danger.col-md-6.offset-3  削除する
 
   /レビューのjavascript
 
