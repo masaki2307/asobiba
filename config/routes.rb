@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   ## public
   
   # user 
+  get 'users' => "public/users#error" 
   get 'users/:id/post' => "public/users#post_list", as: 'post_list'
   patch 'user/withdraw' => "public/users#withdraw", as: 'withdraw'
   get 'users/confirm' => "public/users#confirm", as: 'confirm'
