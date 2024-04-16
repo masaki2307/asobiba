@@ -1,18 +1,18 @@
 .navbar.navbar-expand-md.navbar-light.py-3
   .container-fluid
     = link_to root_path, class: "mx-5" do
-      = image_tag ('logo.jpg'), class: "img-logo"
+      = image_tag ('logo.png'), class: "img-logo"
     | ゲームレビュー＆感想投稿サイト
-    
+
     - if user_signed_in?
       ui.navbar-nav.ml-auto.mx-5
         li.nav-item = link_to "投稿一覧", posts_path, class: "text-secondary"
         li.nav-item#modal-open.text-secondary
-          | ジャンル検索 
+          | ジャンル検索
           i.fa-sharp.fa-solid.fa-chevron-down
         li.nav-item = link_to "マイページ", user_path(current_user), class: "text-secondary"
         li.nav-item = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-secondary"
-      
+
         #modal-overlay.modal-overlay
           #modal-content.modal-content
             h3 ジャンルタグ一覧
@@ -21,17 +21,17 @@
             .row
               - @genres.each do |genre|
                 .col-4.mb-3 = link_to genre.name, posts_path(genre_name: genre.name), class: "genre_link"
-                
+
             #modal-close.btn.btn-secondary 閉じる
-           
-        
+
+
     - else
       ui.navbar-nav.ml-auto.mx-5
         li.nav-item = link_to "投稿一覧", posts_path, class: "text-secondary"
         li.nav-item = link_to "新規登録", new_user_registration_path, class: "text-secondary"
         li.nav-item = link_to "ログイン", new_user_session_path, class: "text-secondary"
-      
-    = form_with url: posts_path, method: :get do |f| 
+
+    = form_with url: posts_path, method: :get do |f|
       = f.text_field :search, placeholder: "ゲームタイトルorユーザーネーム", class: "search"
       = f.submit "検索", class: "btn btn-secondary mx-3"
-  
+
