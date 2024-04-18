@@ -55,7 +55,7 @@
               i.fa-regular.fa-comment-dots
               = comment_total
       
-          javascript: 
+          javascript:
             $(document).on('turbolinks:load', function() {
               let elem = document.querySelector('#new_star_#{post.id}');
               if (elem == null) return;
