@@ -35,7 +35,7 @@
               .col-md-12.mt-3 = f.submit "変更を保存する", class: "btn btn-success"
       .row  
         #confirm-open.btn.btn-danger.my-3.offset-10 削除
-        = link_to "", post_path(id: @post, user_id: @post.user.id), method: :delete, class: "delete"
+        = link_to "", post_path(id: @post, user_id: @post.user.id), method: :delete, id: "delete"
     
         #confirm-overlay.modal-overlay
           #confirm-content.text-center.modal-content
