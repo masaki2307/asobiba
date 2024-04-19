@@ -76,7 +76,7 @@ end
     
   end
 end  
-# ここから退会
+# ここから退会処理
 RSpec.describe 'ユーザー退会処理', type: :system do
   let!(:user) { create(:user, name: 'tarou', email: 'tarou@example.com', password: 'tarou0000', password_confirmation: 'tarou0000') }
 
