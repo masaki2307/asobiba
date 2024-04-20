@@ -17,7 +17,7 @@
             h3.col-md-12.text-center 投稿期間絞り込み
             .row.col-md-12.mt-4.ml-2
               .col-md-3.col-sm-6  = link_to "今日", posts_path(start_date: Date.today.beginning_of_day, end_date:  Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
-              .col-md-3.col-sm-6 = link_to "前日", posts_path(start_date: Date.yesterday, end_date: Date.yesterday), class: "btn btn-primary duration_link w-100"
+              .col-md-3.col-sm-6 = link_to "前日", posts_path(start_date: Date.yesterday.beginning_of_day, end_date: Date.yesterday.end_of_day), class: "btn btn-primary duration_link w-100"
               .col-md-3.col-sm-6 = link_to "1週間", posts_path(start_date: 1.week.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
               .col-md-3.col-sm-6 = link_to "1か月", posts_path(start_date: 1.month.ago.beginning_of_day, end_date: Date.today.end_of_day), class: "btn btn-primary duration_link w-100"
             #duration-close.text-center.btn.btn-secondary 閉じる

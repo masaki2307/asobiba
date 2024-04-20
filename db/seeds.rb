@@ -30,9 +30,15 @@ lucas = User.find_or_create_by!(email: "lucas@example.com") do |user|
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.png"), filename:"sample-user3.jpg")
 end
 
+Genre.find_or_create_by!(name: "格闘")
+Genre.find_or_create_by!(name: "スポーツ")
+Genre.find_or_create_by!(name: "レース")
+Genre.find_or_create_by!(name: "リズム")
+Genre.find_or_create_by!(name: "カード")
 rpg_genre = Genre.find_or_create_by!(name: "ロールプレイング")
 horror_genre = Genre.find_or_create_by!(name: "ホラー")
 magic_genre = Genre.find_or_create_by!(name: "アクション")
+
 
 Post.find_or_create_by!(title: "qest") do |post_image|
   post_image.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/back-alley.jpg"), filename:"back-alley.jpg")
