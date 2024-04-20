@@ -53,13 +53,11 @@ class Public::PostsController < ApplicationController
     if Post.exists?(id: params[:id])
        @post = Post.find(params[:id])
     else 
-      #@post = Post.find(params[:id])
-      #@user = @post.user
       @user = User.find(params[:user_id])
       redirect_to post_list_path(@user)
     end
   end
-# User.exists?(name: '田中')
+
   def update
     @post = Post.find(params[:id])
     @post.user_id = current_user.id
