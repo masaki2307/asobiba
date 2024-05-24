@@ -12,7 +12,7 @@
           = render 'public/posts/review', users: @users
           h5.my-4 = "ゲームジャンル： #{@post.genre.name}"
           
-          p.body-area.border-secondary = @post.introduction
+          div.body-area.border-secondary =  simple_format(@post.introduction, sanitize: true)
         .col-md-12.row.mt-4
           .col-md-9.row.pt-2
             | 投稿者： 
