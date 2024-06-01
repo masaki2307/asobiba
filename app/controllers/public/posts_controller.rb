@@ -16,8 +16,9 @@ class Public::PostsController < ApplicationController
       @posts = Post.order(created_at: :desc).page(params[:page]) 
     elsif params[:sort_review].present?  
       # @posts = Post.where(id: Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id)).page(params[:page]) 
-      posts_arr = Post.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
-      @posts = Kaminari.paginate_array(posts_arr).page(params[:page])
+      # posts_arr = Post.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+      # @posts = Kaminari.paginate_array(posts_arr).page(params[:page])
+      @posts = Post.left_joins(:favorites).group(:id).order("count(favorites.post_id) desc").page(params[:page])
     else
       @posts = Post.page(params[:page])
     end

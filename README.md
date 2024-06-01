@@ -24,7 +24,9 @@ UI　FLOW図　https://drive.google.com/file/d/1XGjS8le4KoL4GuLo7s0jI63uU8WZySvI
 ER図　https://drive.google.com/file/d/1OSbwvxThk3hwl86hpbi-TzZpNLHKrFGK/view?usp=sharing<br>
 機能一覧　https://docs.google.com/spreadsheets/d/1903TEqYfoKPFR-ZN0n9cZJDwyjBZGGAD8AXE-MdPqzU/edit?usp=sharing<br>
 テーブル定義書　https://docs.google.com/spreadsheets/d/1iVYt9-w8GBD0jScJZsBcH1YIjXCcXa3oyZ9o6DT6dXI/edit?usp=sharing<br>
-詳細設計書　https://docs.google.com/spreadsheets/d/1_GJuvTEswBqp_bGalATAmA0f1ODwhAj9A1fQmQR3Zyw/edit?usp=sharing
+詳細設計書　https://docs.google.com/spreadsheets/d/1_GJuvTEswBqp_bGalATAmA0f1ODwhAj9A1fQmQR3Zyw/edit?usp=sharing<br>
+インフラ設計書　https://docs.google.com/spreadsheets/d/1GCxrZaZlKPbbqk7yc0aGIe_cZP1dET9P0NbavN1FevM/edit?usp=sharing<br>
+AWS構成図　https://drive.google.com/file/d/1nsZ97vJql_VDCj-9lDGwlNVaYf6uDC2x/view?usp=sharing
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
