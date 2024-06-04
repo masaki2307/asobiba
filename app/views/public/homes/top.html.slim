@@ -11,13 +11,13 @@
       | 投稿・コメントにはユーザー登録が必要です
     .mt-5  
     .row
-      .col-md-2.offset-1.card.border.border-warning
+      .col-md-2.offset-1.card.border.border-warning.responsive.mb
         p.text-center お試しログインはこちら！
         .mb-3.text-center = link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "text-light btn btn-warning"
-      .col-md-2.offset-2.card.border.border-primary
+      .col-md-2.offset-2.card.border.border-primary.none
         p.text-center 新規の方はこちら！
         = link_to "新規登録", new_user_registration_path, class: "text-light btn btn-primary mb-3"
-      .col-md-2.offset-2.card.border.border-success
+      .col-md-2.offset-2.card.border.border-success.none
         p.text-center 登録済みの方はこちら！
         = link_to "ログイン", new_user_session_path, class: "text-light btn btn-success mb-3" 
         
@@ -71,7 +71,8 @@
                   raty(elem, opt);
                 }); 
                 
-    .btn.btn-outline-secondary.offset-9 = link_to "新着投稿をもっと見る ⇒ ", posts_path(sort_created: true)
+    = link_to posts_path(sort_created: true),class: "btn btn-outline-secondary offset-9 responsive mb" do
+      | 新着投稿をもっと見る ⇒ 
       
   .card.my-5.p-2
     .balloon
@@ -124,4 +125,5 @@
         - total += 1
         - if total == 3
           - break
-    .btn.btn-outline-secondary.offset-9 = link_to " いいねが多い投稿をもっと見る ⇒ ", posts_path(sort_review: true)
+    = link_to posts_path(sort_review: true), class: "btn btn-outline-secondary offset-9 responsive mb" do
+      | いいね順の投稿をもっと見る ⇒ 

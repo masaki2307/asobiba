@@ -263,6 +263,7 @@ li {
 }
 
 @media screen and (max-width: 425px) {
+  // header
   .search {
     width: 65%;
   }
@@ -278,6 +279,7 @@ li {
   .responsive.mb {
     margin: 0 auto;
     text-align: center;
+    width: 90%;
   }
   li.nav-item {
     margin-top: 2px;
@@ -297,6 +299,30 @@ li {
   margin: 1.5em auto 0;
   padding: 10px 20px;
   background: #fff;
-  
+  }
+  // top
+  .main-visual {
+  width: 90%;
+  height: 450px;
+  background-image: url('../images/temple2.jpg');
+  margin: auto;
+  background-size: contain;
+   
+  z-index: 1;
+  position: re;
 }
+
+  .none {
+    display: none;
+  }
+  
+  .balloon {
+    position: relative;
+    padding: 25px;
+    background-color: #fff3ad;
+    width: 90%;
+    margin: 15px;
+  }
+
+
 }
