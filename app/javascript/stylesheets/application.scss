@@ -197,6 +197,8 @@ li {
   margin-left: 50px;
 }
 
+
+
 .main-visual {
   width: 90%;
   height: 300px;
@@ -213,6 +215,7 @@ li {
   height: 300px;
 }
 
+// ポップアップデザイン
 .balloon{
   position: relative;
   padding: 25px;
@@ -300,6 +303,19 @@ li {
   padding: 10px 20px;
   background: #fff;
   }
+  
+  #confirm-content {
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 90%;
+  height: 80%;
+  margin: 1.5em auto 0;
+  padding: 10px 20px;
+  background: #fff;
+}
   // top
   .main-visual {
   width: 90%;
@@ -323,6 +339,9 @@ li {
     width: 90%;
     margin: 15px;
   }
-
+  
+.w-100 {
+  width: 130% !important;
+}
 
 }
