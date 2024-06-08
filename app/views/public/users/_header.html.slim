@@ -7,7 +7,7 @@
     - if user_signed_in?
       ui.navbar-nav.ml-auto.responsive.mb
         li.nav-item = link_to "投稿一覧", posts_path, class: "text-secondary"
-        li.nav-item#modal-open.text-secondary
+        li.nav-item#modal-open.text-secondary.responsive.mb
           | ジャンル検索
           i.fa-sharp.fa-solid.fa-chevron-down
         li.nav-item = link_to "マイページ", user_path(current_user), class: "text-secondary"
