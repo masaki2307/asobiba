@@ -1,6 +1,6 @@
 = render 'public/users/header', users: @users
 .container
-  .row.mt-5.
+  .row.mt-5
     - if @user.errors.any?
       ul.col-md-7.offset-2
        - @user.errors.full_messages.each do |message|
@@ -27,8 +27,8 @@
               .col-md-6.text-success.font-weight-bold = f.label :introduction, "自己紹介(一言)"
               .col-md-6 = f.text_field :introduction
               
-            .field.row.col-md-10.text-center.my-3
-              .col-md-12 = f.file_field :profile_image, accept: "image/*"  
+            .field.row.col-md-12.text-center.my-3
+              = f.file_field :profile_image, accept: "image/*", class: "responsive mb" 
               
             .col-md-12.text-center.my-4 = f.submit "変更を保存", class: "btn btn-success"
           
