@@ -311,7 +311,7 @@ li {
   left: 50%;
   transform: translate(-50%,-50%);
   width: 90%;
-  height: 80%;
+  height: 50%;
   margin: 1.5em auto 0;
   padding: 10px 20px;
   background: #fff;
@@ -342,6 +342,18 @@ li {
   
   #confirm-content.w-100 {
   width: 130% !important;
+}
+
+#confirm-close{
+  width: 30%;
+  margin-top: 80px;
+  font-size: 80%;
+}
+
+#confirm-action{
+  width: 30%;
+  margin-top: 80px;
+  font-size: 80%;
 }
 
 }

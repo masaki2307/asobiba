@@ -1,7 +1,7 @@
 = render 'public/users/header', users: @users
 .container
   .row.mt-5
-    .col-md-5.offset-4
+    .col-md-5.offset-4.responsive.mb
       .card.row
         .card-header.col-md-12.text-center.bg-info.text-light 新規投稿
         .card-body.row
@@ -15,7 +15,7 @@
           
             .field.col-md-12.text-center.my-3
               .col-md-12 = f.label :title, "タイトル"
-              .col-md-12 = f.text_field :title, placeholder: "ゲームタイトルを入れて下さい", class: "w-100"
+              .col-md-12 = f.text_field :title, placeholder: "ゲームタイトルを入れて下さい", class: "responsive mb"
               
             .field
               .form-group#star.row.col-md-12.text-center.my-3
@@ -33,7 +33,7 @@
           
             .field.row.col-md-12.text-center.my-3
               .col-md-12 = f.label :introduction, "感想orレビュー"
-              .col-md-12 = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください", class: "body-area"
+              .col-md-12 = f.text_area :introduction, placeholder: "感想もしくはレビューをご記入ください", class: "body-area responsive mb"
               
               .col-md-12.mt-3 = f.submit "新規投稿", class: "btn btn-success"
               
